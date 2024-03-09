@@ -1,0 +1,44 @@
+<div class="max-w-3xl mx-auto px-4 my-16">
+  <div class="pb-6 border-b dark:border-zinc-700 border-zinc-200">
+    <nav aria-label="breadcrumb" class="my-6 font-heading flex text-zinc-500 dark:text-zinc-200 text-sm">
+      <ol class="flex flex-wrap items-center space-x-3 list-none m-0 p-0">
+        <li>
+          <%= link_to "Школы", schools_path, class: "hover:underline text-primary-600 dark:text-primary-500" %>
+        </li>
+        <li class="flex space-x-3">
+          <div class="flex items-center">
+            <span class="text-zinc-300 dark:text-zinc-500">/</span>
+          </div>
+          <span class="text-zinc-600 dark:text-zinc-100" aria-current="page">
+            #<%= @school.id %>
+          </span>
+        </li>
+      </ol>
+    </nav>
+    <div class="flex items-center justify-between">
+      <h1 class="text-2xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight flex-1"><%= @school.name %></h1>
+      <%= link_to "Редактировать", edit_school_path(@school), class: "btn btn-white" %>
+    </div>
+  </div>
+
+  <%= tag.table class: "table-auto w-full bg-zinc-900 text-zinc-100" do %>
+    <%= tag.thead do %>
+      <%= tag.tr do %>
+        <%= tag.th "Класс", scope: "col", class: "p-3 text-left border-b-2 border-zinc-700" %>
+        <%= tag.th "Количество учеников", scope: "col", class: "p-3 text-left border-b-2 border-zinc-700" %>
+        <%= tag.th "Ссылка на страницу класса", scope: "col", class: "p-3 text-left border-b-2 border-zinc-700" %>
+      <% end %>
+    <% end %>
+    <% @classes&.each do |study_group| %>
+    <%= tag.tbody do %>
+      <%= tag.tr do %>
+        <%= tag.td study_group.name, class: "p-3 text-left" %>
+        <%= tag.td study_group.students_count, class: "p-3 text-left" %>
+        <%= tag.td class: "p-3 text-left" do %>
+          <%= link_to  "Посмотреть учеников этого класса", school_class_students_path(@school, study_group), class: 'btn-link text-sm' %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,29 @@
+<article id="<%= dom_id study_group %>" class="py-6 prose prose-zinc dark:prose-invert">
+  <% unless action_name == 'show' %>
+    <p class="mb-0 font-heading font-medium">
+      Класс
+    </p>
+    <p class="my-0">
+      <%= study_group.name %>
+    </p>
+  <% end %>
+    <p class="mb-0 font-heading font-medium">
+      Количество учеников
+    </p>
+    <p class="my-0">
+      <%= study_group.students_count || 0 %>
+    </p>
+    <p class="mb-0 font-heading font-medium">
+      Школа
+    </p>
+    <p class="my-0">
+      <%= study_group.school.name %>
+    </p>
+
+  <% unless action_name == 'show' %>
+    <p>
+      <%= link_to "Посмотреть класс", study_group, class: "underline" %>
+    </p>
+  <% end %>
+
+</article>

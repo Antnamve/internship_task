@@ -1,0 +1,30 @@
+<%= form_with(model: study_group) do |form| %>
+  <%= render "shared/error_messages", resource: form.object %>
+
+  <div class="form-group">
+    <%= form.label 'Цифра', class: "form-label" %>
+    <%= form.number_field :number, class: "form-input" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label 'Буква', class: "form-label" %>
+    <%= form.text_field :letter, class: "form-input" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label 'Школа', class: "form-label" %>
+    <%= form.collection_select :school_id, School.all, :id, :name, { prompt: 'Выберите школу' }, { class: "form-select", "aria-label": "Default select example" } %>
+  </div>
+
+  <div class="flex items-center justify-between flex-wrap">
+    <div class="sm:flex-1 sm:mb-0 mb-6">
+      <%= form.submit 'Обновить данные класса', class: "btn btn-primary" %>
+    </div>
+
+    <% if form.object.new_record? %>
+      <%= link_to "Отмена", study_groups_path, class: "btn btn-white" %>
+    <% else %>
+      <%= link_to "Отмена", study_group_path(@study_group), class: "btn btn-white" %>
+    <% end %>
+  </div>
+<% end %>

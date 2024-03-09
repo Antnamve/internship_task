@@ -1,0 +1,30 @@
+<article id="<%= dom_id student %>" class="py-6 prose prose-zinc dark:prose-invert">
+    <p class="mb-0 font-heading font-medium">
+      Имя
+    </p>
+    <p class="my-0">
+      <%= student.first_name %>
+    </p>
+    <p class="mb-0 font-heading font-medium">
+      Фамилия
+    </p>
+    <p class="my-0">
+      <%= student.surname %>
+    </p>
+    <p class="mb-0 font-heading font-medium">
+      Отчество
+    </p>
+    <p class="my-0">
+      <%= student.last_name %>
+    </p>
+    <p class="mb-0 font-heading font-medium">
+      Почта
+    </p>
+    <p class="my-0">
+      <%= student.email %>
+    </p>
+    <p class="my-0 mt-4">
+      <%= link_to "Редактировать данные ученика", edit_student_path(student), class: "underline" %>
+    </p>
+
+</article>

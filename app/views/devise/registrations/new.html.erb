@@ -1,0 +1,48 @@
+<%= render "auth_layout" do %>
+  <h1 class="text-3xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight mb-6">Зарегистрироваться</h1>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }) do |f| %>
+
+    <%= render "shared/error_messages", resource: resource %>
+
+    <div class="form-group">
+      <%= f.label :email, class: "form-label" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-input", pattern: "[^@\s]+@[^@\s]+\.[^@\s]+", title: "Invalid email address", placeholder: "john.doe@example.com" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label 'Учебная группа', class: "form-label" %>
+      <%= f.collection_select :class_id, StudyGroup.all, :id, :name, { prompt: 'Выберите ваш класс' }, { class: "form-select", "aria-label": "Default select example" } %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label 'Школа', class: "form-label" %>
+      <%= f.collection_select :school_id, School.all, :id, :name, { prompt: 'Выберите вашу школу' }, { class: "form-select", "aria-label": "Default select example" } %>
+    </div>
+
+    <div class="form-group">
+      <div class="flex items-center justify-between mb-2">
+        <%= f.label 'Пароль', class: "form-label mb-0" %>
+
+        <% if @minimum_password_length %>
+          <div class="inline prose prose-sm prose-zinc dark:prose-invert">
+            <p>(<%= @minimum_password_length %> символов минимум)</p>
+          </div>
+        <% end %>
+      </div>
+
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-input" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label 'Подтверждение пароля', class: "form-label" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-input" %>
+    </div>
+
+    <%= f.submit "Зарегистрироваться", class: "btn btn-primary w-full" %>
+
+    <div class="prose prose-sm text-center prose-zinc dark:prose-invert mt-6">
+      <p>Уже есть аккаунт? <%= link_to "Войти", new_session_path(resource_name) %></p>
+    </div>
+  <% end %>
+<% end %>

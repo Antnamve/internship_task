@@ -1,0 +1,49 @@
+<div class="max-w-3xl mx-auto px-4 my-16">
+  <div class="pb-6 border-b dark:border-zinc-700 border-zinc-200">
+    <nav aria-label="breadcrumb" class="my-6 font-heading flex text-zinc-500 dark:text-zinc-200 text-sm">
+      <ol class="flex flex-wrap items-center space-x-3 list-none m-0 p-0">
+        <li>
+          <%= link_to "Классы", study_groups_path, class: "hover:underline text-primary-600 dark:text-primary-500" %>
+        </li>
+        <li class="flex space-x-3">
+          <div class="flex items-center">
+            <span class="text-zinc-300 dark:text-zinc-500">/</span>
+          </div>
+          <span class="text-zinc-600 dark:text-zinc-100" aria-current="page">
+            #<%= @study_group.id %>
+          </span>
+        </li>
+      </ol>
+    </nav>
+    <div class="flex items-center justify-between">
+      <h1 class="text-2xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight flex-1"><%= @study_group.name %></h1>
+      <%= link_to "Редактировать", edit_study_group_path(@study_group), class: "btn btn-white" %>
+    </div>
+  </div>
+  <%= render @study_group %>
+
+  <% unless @study_group.students_count == 0 %>
+    <h1 class="mb-4 text-2xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight flex-1">Ученики этого класса</h1>
+    <%= tag.table class: "table-auto w-full bg-zinc-900 text-zinc-100" do %>
+      <%= tag.thead do %>
+        <%= tag.tr do %>
+          <%= tag.th "Имя", scope: "col", class: "p-3 text-left border-b-2 border-zinc-700" %>
+          <%= tag.th "Фамилия", scope: "col", class: "p-3 text-left border-b-2 border-zinc-700" %>
+          <%= tag.th "Отчество", scope: "col", class: "p-3 text-left border-b-2 border-zinc-700" %>
+        <% end %>
+      <% end %>
+      <% @students&.each do |student| %>
+        <%= tag.tbody do %>
+          <%= tag.tr do %>
+            <%= tag.td student.first_name, class: "p-3 text-left" %>
+            <%= tag.td student.surname, class: "p-3 text-left" %>
+            <%= tag.td student.last_name, class: "p-3 text-left" %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% else %>
+        <h1 class="mb-4 text-2xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight flex-1">В этом классе пока нет учеников</h1>
+        <%= link_to "Добавить ученика", new_student_path(study_group: @study_group, class_id: 27), class: "btn btn-white" %>
+  <% end %>
+</div>
