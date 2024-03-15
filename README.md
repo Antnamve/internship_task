@@ -10,5 +10,8 @@
  - в профиле ученика можно менять и другие его данные
  - возможна регистрация новых пользователей
  - все CRUD операции над моделями школы, класса и ученика
- - работают все запросы, которые были указаны в API
+ - работают все запросы, указаные в API
  - запуск через docker compose up
+
+# Api этого проекта можно найти по ссылке
+[https://github.com/uchiru/internship-api-schema-task/blob/master/openapi.yaml](https://github.com/uchiru/internship-api-schema-task/blob/master/openapi.yaml)
