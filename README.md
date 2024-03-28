@@ -1,5 +1,8 @@
 # README
 
+## Cхема API в Swagger:
+![image](https://github.com/antnamve/uchiru-api/assets/143155099/93ace28a-df39-499b-a568-c88619a2df2c)
+
 !Важно:
 - нельзя создать ученика с параметрами school_id = 0 и class_id = 0, поскольку модель ученика принадлежит моделям школа и класс, попробуйте school_id = 1 и class_id = 1
 
